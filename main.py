@@ -11,8 +11,12 @@ clock = pygame.time.Clock()
 running = True
 
 # Load the background image
-background_image=pygame.image.load("/Users/dashnican/Desktop/coding/my_first_game/assets/BG_Grass.png")
+background_image = pygame.image.load("/Users/dashnican/Desktop/coding/my_first_game/assets/BG_Grass.png")
+
+playerGroup = pygame.sprite.Group()
+Player.containers = playerGroup
 mr_player = Player(screen, game_width/2, game_height/2)
+
 
 while running:
     # Makes the game stop if the player clicks the X or presses esc
