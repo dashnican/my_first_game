@@ -15,7 +15,7 @@ background_image = pygame.image.load("/Users/dashnican/Desktop/coding/my_first_g
 projectileGroup = pygame.sprite.Group()
 playerGroup = pygame.sprite.Group()
 Player.containers = playerGroup
-projectile.containers = projectileGroup
+Projectile.containers = projectileGroup
 mr_player = Player(screen, game_width/2, game_height/2)
 
 

@@ -1,5 +1,6 @@
 import pygame
 import toolbox
+import projectile
 
 class Player(pygame.sprite.Sprite):
     # Player constructor function (stuff that happens right when you make player)
