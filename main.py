@@ -1,7 +1,7 @@
 # Example file showing a basic pygame "game loop"
 import pygame
 from player import Player
-
+from projectile import Projectile
 # pygame setup
 pygame.init()
 game_width = 1000
@@ -12,9 +12,10 @@ running = True
 
 # Load the background image
 background_image = pygame.image.load("/Users/dashnican/Desktop/coding/my_first_game/assets/BG_Grass.png")
-
+projectileGroup = pygame.sprite.Group()
 playerGroup = pygame.sprite.Group()
 Player.containers = playerGroup
+projectile.containers = projectileGroup
 mr_player = Player(screen, game_width/2, game_height/2)
 
 
@@ -35,10 +36,14 @@ while running:
         mr_player.move(0, -1)
     if keys[pygame.K_s]:
         mr_player.move(0, 1)
+    if pygame.mouse.get_pressed()[0]:
+        mr_player.shoot()
     
     screen.blit(background_image, (0,0))
     
     mr_player.update()
+    for projectile in projectileGroup:
+        projectile.update()
     
 
     # Tell pygame to update the screen
