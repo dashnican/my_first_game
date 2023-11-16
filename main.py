@@ -2,6 +2,7 @@
 import pygame
 from player import Player
 from projectile import Projectile
+from enemy import Enemy
 # pygame setup
 pygame.init()
 game_width = 1000
@@ -12,12 +13,17 @@ running = True
 
 # Load the background image
 background_image = pygame.image.load("/Users/dashnican/Desktop/coding/my_first_game/assets/BG_Grass.png")
+
 projectileGroup = pygame.sprite.Group()
 playerGroup = pygame.sprite.Group()
+enemyGroup = pygame.sprite.Group()
+
 Player.containers = playerGroup
 Projectile.containers = projectileGroup
-mr_player = Player(screen, game_width/2, game_height/2)
+Enemy.containers = enemyGroup
 
+mr_player = Player(screen, game_width/2, game_height/2)
+robot = Enemy(screen, 100 , 100, mr_player)
 
 while running:
     # Makes the game stop if the player clicks the X or presses esc
@@ -44,7 +50,8 @@ while running:
     mr_player.update()
     for projectile in projectileGroup:
         projectile.update()
-    
+    for enemy in enemyGroup:
+        enemy.update()
 
     # Tell pygame to update the screen
     pygame.display.flip()
