@@ -13,11 +13,11 @@ running = True
 
 # Load the background image
 background_image = pygame.image.load("/Users/dashnican/Desktop/coding/my_first_game/assets/BG_Grass.png")
-
+#make all sprite groups
 projectileGroup = pygame.sprite.Group()
 playerGroup = pygame.sprite.Group()
 enemyGroup = pygame.sprite.Group()
-
+#put every sprite class in a group
 Player.containers = playerGroup
 Projectile.containers = projectileGroup
 Enemy.containers = enemyGroup
@@ -51,7 +51,7 @@ while running:
     for projectile in projectileGroup:
         projectile.update()
     for enemy in enemyGroup:
-        enemy.update()
+        enemy.update(projectileGroup)
 
     # Tell pygame to update the screen
     pygame.display.flip()

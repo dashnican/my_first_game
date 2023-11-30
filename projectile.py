@@ -19,6 +19,7 @@ class Projectile(pygame.sprite.Sprite):
         self.x_move = math.cos(self.angle_rads) * self.speed
         self.y_move = -math.sin(self.angle_rads) * self.speed
         self.image, self.rect = toolbox.getRotatedImage(self.image, self.rect, self.angle)
+        self.damage = 50
 
     def update(self):
         self.x += self.x_move
@@ -35,6 +36,9 @@ class Projectile(pygame.sprite.Sprite):
         elif self.y > self.screen.get_height() + self.image.get_height():
             self.kill()
         self.screen.blit(self.image, self.rect)
+
+    def explode(self):
+        self.kill()
 
 
 
