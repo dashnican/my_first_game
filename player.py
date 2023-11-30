@@ -22,9 +22,10 @@ class Player(pygame.sprite.Sprite):
         self.rect.center = (self.x, self.y)
         if self.shoot_cooldown > 0:
             self.shoot_cooldown = self.shoot_cooldown -1
-
+        #get the angle between the player and the mouse
         mouse_x, mouse_y = pygame.mouse.get_pos()
         self.angle = toolbox.angleBetweenPoints(self.x, self.y, mouse_x, mouse_y)
+
         image_to_draw, image_rect = toolbox.getRotatedImage(self.image, self.rect, self.angle)
         self.screen.blit(image_to_draw, image_rect)
         

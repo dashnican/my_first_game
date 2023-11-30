@@ -13,16 +13,19 @@ class Enemy(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (self.x, self.y)
         self.player = player
-        self.angle = toolbox.angleBetweenPoints(self.x, self.y, self.player.x, self.player.y)
-        self.speed = 3
-        self.angle_rads = math.radians(self.angle)
-        self.x_move = math.cos(self.angle_rads) * self.speed
-        self.y_move = -math.sin(self.angle_rads) * self.speed
+        self.angle = 0
+        self.speed = 5.1
         self.healthpoints = 100
         self.hurt = False
         self.imagehurt = pygame.image.load("/Users/dashnican/Desktop/coding/my_first_game/assets/Enemy_02hurt.png")
 
     def update(self, projectiles):
+        #getting the angle from the enemy's position to the player's location
+        self.angle = toolbox.angleBetweenPoints(self.x, self.y, self.player.x, self.player.y)
+        self.angle_rads = math.radians(self.angle)
+        #getting the enemy to move in that angle
+        self.x_move = math.cos(self.angle_rads) * self.speed
+        self.y_move = -math.sin(self.angle_rads) * self.speed
         self.x += self.x_move
         self.y += self.y_move
         self.rect.center = (self.x, self.y)
