@@ -14,7 +14,7 @@ class Enemy(pygame.sprite.Sprite):
         self.rect.center = (self.x, self.y)
         self.player = player
         self.angle = 0
-        self.speed = 5.1
+        self.speed = 3.5
         self.healthpoints = 100
         self.hurt = False
         self.imagehurt = pygame.image.load("/Users/dashnican/Desktop/coding/my_first_game/assets/Enemy_02hurt.png")

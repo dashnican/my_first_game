@@ -3,6 +3,7 @@ import pygame
 from player import Player
 from projectile import Projectile
 from enemy import Enemy
+import random
 # pygame setup
 pygame.init()
 game_width = 1000
@@ -23,7 +24,9 @@ Projectile.containers = projectileGroup
 Enemy.containers = enemyGroup
 
 mr_player = Player(screen, game_width/2, game_height/2)
-robot = Enemy(screen, 100 , 100, mr_player)
+
+enemytimer = 0
+enemytimermax = 30
 
 while running:
     # Makes the game stop if the player clicks the X or presses esc
@@ -44,7 +47,21 @@ while running:
         mr_player.move(0, 1)
     if pygame.mouse.get_pressed()[0]:
         mr_player.shoot()
-    
+
+    if enemytimer >= 0:
+        enemytimer = enemytimer +1
+    if enemytimer == enemytimermax:
+        enemytimer = 0
+        sidetospawn = random.randint(1, 4)
+        if sidetospawn == 1:
+            robot = Enemy(screen, 100 , 100, mr_player)
+        if sidetospawn == 2:
+            bot = Enemy(screen, 1000, 0, mr_player)
+        if sidetospawn == 3: 
+            robot = Enemy(screen, 567 , 10, mr_player)
+        if sidetospawn == 4:
+            robot = Enemy(screen, 800 , 800, mr_player)
+
     screen.blit(background_image, (0,0))
     
     mr_player.update()
@@ -52,7 +69,6 @@ while running:
         projectile.update()
     for enemy in enemyGroup:
         enemy.update(projectileGroup)
-
     # Tell pygame to update the screen
     pygame.display.flip()
     clock.tick(40)

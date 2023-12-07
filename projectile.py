@@ -10,7 +10,7 @@ class Projectile(pygame.sprite.Sprite):
         self.screen = screen
         self.x = x
         self.y = y
-        self.image = pygame.image.load("/Users/dashnican/Desktop/coding/my_first_game/assets/BalloonSmall.png")
+        self.image = pygame.image.load("/Users/dashnican/Desktop/coding/my_first_game/assets/BalloonSmall.png") 
         self.rect = self.image.get_rect()
         self.rect.center = (self.x, self.y)
         self.angle = angle
@@ -20,7 +20,7 @@ class Projectile(pygame.sprite.Sprite):
         self.y_move = -math.sin(self.angle_rads) * self.speed
         self.image, self.rect = toolbox.getRotatedImage(self.image, self.rect, self.angle)
         self.damage = 50
-
+        
     def update(self):
         self.x += self.x_move
         self.y += self.y_move
@@ -39,6 +39,7 @@ class Projectile(pygame.sprite.Sprite):
 
     def explode(self):
         self.kill()
+        
 
 
 
