@@ -18,7 +18,8 @@ class Enemy(pygame.sprite.Sprite):
         self.healthpoints = 100
         self.hurt = False
         self.imagehurt = pygame.image.load("/Users/dashnican/Desktop/coding/my_first_game/assets/Enemy_02hurt.png")
-
+        self.damage = 50
+        
     def update(self, projectiles):
         #getting the angle from the enemy's position to the player's location
         self.angle = toolbox.angleBetweenPoints(self.x, self.y, self.player.x, self.player.y)

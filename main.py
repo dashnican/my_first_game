@@ -64,11 +64,12 @@ while running:
 
     screen.blit(background_image, (0,0))
     
-    mr_player.update()
+    mr_player.update(enemyGroup)
     for projectile in projectileGroup:
         projectile.update()
     for enemy in enemyGroup:
         enemy.update(projectileGroup)
+        
     # Tell pygame to update the screen
     pygame.display.flip()
     clock.tick(40)
