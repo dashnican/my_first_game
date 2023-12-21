@@ -4,6 +4,7 @@ from player import Player
 from projectile import Projectile
 from enemy import Enemy
 import random
+from crate import Crate
 # pygame setup
 pygame.init()
 game_width = 1000
@@ -18,11 +19,12 @@ background_image = pygame.image.load("/Users/dashnican/Desktop/coding/my_first_g
 projectileGroup = pygame.sprite.Group()
 playerGroup = pygame.sprite.Group()
 enemyGroup = pygame.sprite.Group()
+crategroup = pygame.sprite.Group()
 #put every sprite class in a group
 Player.containers = playerGroup
 Projectile.containers = projectileGroup
 Enemy.containers = enemyGroup
-
+Crate.containers = crategroup
 mr_player = Player(screen, game_width/2, game_height/2)
 
 enemytimer = 0
@@ -45,6 +47,8 @@ while running:
         mr_player.move(0, -1)
     if keys[pygame.K_s]:
         mr_player.move(0, 1)
+    if keys[pygame.K_q]:
+        mr_player.placeCrate() 
     if pygame.mouse.get_pressed()[0]:
         mr_player.shoot()
 
@@ -69,7 +73,8 @@ while running:
         projectile.update()
     for enemy in enemyGroup:
         enemy.update(projectileGroup)
-        
+    for crate in crategroup:
+        crate.update(projectileGroup)
     # Tell pygame to update the screen
     pygame.display.flip()
     clock.tick(40)

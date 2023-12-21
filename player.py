@@ -1,6 +1,7 @@
 import pygame
 import toolbox
 import projectile
+import crate
 
 class Player(pygame.sprite.Sprite):
     # Player constructor function (stuff that happens right when you make player)
@@ -23,7 +24,8 @@ class Player(pygame.sprite.Sprite):
         self.health_bar_height = 8
         self.health_bar_green = pygame.Rect(0, 0, self.health_bar_width, self.health_bar_height)
         self.health_bar_red = pygame.Rect(0, 0, self.health_bar_width, self.health_bar_height)
-
+        self.crateammo = 10000
+        self.cratecooldown = 0
     # Player update function (stuff to happen over and over again)
     def update(self, enemies):
         for enemy in enemies:
@@ -50,6 +52,8 @@ class Player(pygame.sprite.Sprite):
 
         image_to_draw, image_rect = toolbox.getRotatedImage(self.image, self.rect, self.angle)
 
+        if self.cratecooldown > 0:
+            self.cratecooldown = self.cratecooldown -1
         self.screen.blit(image_to_draw, image_rect)
 
         self.draw_healthbar()
@@ -86,3 +90,15 @@ class Player(pygame.sprite.Sprite):
 
         if self.alive:
             pygame.draw.rect(self.screen, (0, 255, 0), self.health_bar_green)
+
+    def placeCrate(self):
+        if self.alive and self.crateammo >0 and self.cratecooldown <= 0:
+            self.crateammo = self.crateammo -1 
+            self.cratecooldown = 5
+            crate.Crate(self.screen, self.x, self.y, self)
+            
+
+
+
+
+    
