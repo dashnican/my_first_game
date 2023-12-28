@@ -19,12 +19,12 @@ background_image = pygame.image.load("/Users/dashnican/Desktop/coding/my_first_g
 projectileGroup = pygame.sprite.Group()
 playerGroup = pygame.sprite.Group()
 enemyGroup = pygame.sprite.Group()
-crategroup = pygame.sprite.Group()
+crateGroup = pygame.sprite.Group()
 #put every sprite class in a group
 Player.containers = playerGroup
 Projectile.containers = projectileGroup
 Enemy.containers = enemyGroup
-Crate.containers = crategroup
+Crate.containers = crateGroup
 mr_player = Player(screen, game_width/2, game_height/2)
 
 enemytimer = 0
@@ -72,8 +72,8 @@ while running:
     for projectile in projectileGroup:
         projectile.update()
     for enemy in enemyGroup:
-        enemy.update(projectileGroup)
-    for crate in crategroup:
+        enemy.update(projectileGroup, crateGroup)
+    for crate in crateGroup:
         crate.update(projectileGroup)
     # Tell pygame to update the screen
     pygame.display.flip()

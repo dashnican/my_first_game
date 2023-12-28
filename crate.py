@@ -13,11 +13,11 @@ class Crate(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (self.x, self.y)
         self.player = player
-        self.healthpoints = 1000
+        self.healthpoints = 400
         self.hitcooldown = 0
         self.imagehurt = pygame.image.load("/Users/dashnican/Desktop/coding/my_first_game/assets/SmallExplosion1.png")
         self.just_placed = True
-
+        self.damage = 10
     def update(self, projectiles):
 
         if not self.rect.colliderect(self.player.rect):
